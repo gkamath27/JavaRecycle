@@ -1,0 +1,101 @@
+CREATE TABLE `Items` (
+  `id` int(11) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name_UNIQUE` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+CREATE TABLE `Location` (
+  `id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `new_table` (
+  `id` int(11) NOT NULL,
+  `RCM_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+CREATE TABLE `RCM` (
+  `id` int(11) NOT NULL,
+  `Location_id` int(11) NOT NULL,
+  `totalCapacityWeight` double NOT NULL,
+  `currentWeight` double NOT NULL,
+  `totalCapacityVolume` double NOT NULL,
+  `currentVolume` double NOT NULL,
+  `status` varchar(45) NOT NULL,
+  `cash` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+CREATE TABLE `RCMEmptyStats` (
+  `id` int(11) NOT NULL,
+  `RCM_id` int(11) NOT NULL COMMENT '	',
+  `EmptiedTS` datetime NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+CREATE TABLE `RCMPriceList` (
+  `id` int(11) NOT NULL,
+  `RCM_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL,
+  `price` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+CREATE TABLE `RCMTransactions` (
+  `id` int(11) NOT NULL,
+  `RCM_id` int(11) NOT NULL,
+  `item_id` int(11) NOT NULL COMMENT '	',
+  `weight` double NOT NULL,
+  `cashvalue` double NOT NULL,
+  `couponval` double NOT NULL,
+  `time` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+
+CREATE TABLE `RMOS` (
+  `id` int(11) NOT NULL,
+  `name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+
+
+
+CREATE TABLE `RMOSGroups` (
+  `id` int(11) NOT NULL,
+  `RMOS_id` int(11) NOT NULL,
+  `RCM_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
